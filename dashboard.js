@@ -1,10 +1,8 @@
 const dashboard = document.getElementById("Dashboard");
 
-
 function getDevicePixelRatio() {
   return window.devicePixelRatio || 1;
 }
-
 
 const competitionCtx = document.getElementById('competitionChart').getContext('2d');
 
@@ -15,32 +13,38 @@ const competitionChart = new Chart(competitionCtx, {
     datasets: [{
       label: 'Participants',
       data: [900, 400, 200, 300, 600, 500, 450],
-      backgroundColor: '#00FF00',
+      backgroundColor: '#2FEF10',
       borderRadius: 10,
       barThickness: 23,
-      borderDash: [5, 5],
+     
     }]
   },
   options: {
     responsive: true,
     maintainAspectRatio: false,
     devicePixelRatio: getDevicePixelRatio(), 
-    plugins: { legend: { display: false } },
+    plugins: { 
+      legend: { 
+        display: false,
+        labels: { font: { family: "Poppins", size: 13 } }
+      } 
+    },
     scales: {
       y: {
         beginAtZero: true,
-        ticks: { maxTicksLimit: 6, font: { size: 12 } },
+        ticks: { 
+          maxTicksLimit: 6, 
+          font: { family: "Poppins", size: 12 } 
+        },
         grid: { color: '#0000001c', lineWidth: 1.5, drawTicks: false }
       },
       x: {
-        ticks: { font: { size: 9 } },
+        ticks: { font: { family: "Poppins", size: 16 } },
         grid: { display: false }
       }
     }
   }
 });
-
-
 const stepsCtx = document.getElementById('stepsChart').getContext('2d');
 
 function createGradients(ctx) {
@@ -49,9 +53,10 @@ function createGradients(ctx) {
   gradientBorder.addColorStop(0.5, "rgba(0, 255, 0, 0.5)");
   gradientBorder.addColorStop(1, "rgba(0, 255, 0, 0)");
 
-  const gradientFill = ctx.createLinearGradient(0, 0, 0, ctx.canvas.height);
-  gradientFill.addColorStop(0, "rgba(54, 231, 63, 0.93)");
-  gradientFill.addColorStop(1, "rgba(7, 245, 19, 0.18)");
+  
+  const gradientFill = ctx.createLinearGradient(0, ctx.canvas.height, 0, 0);
+  gradientFill.addColorStop(0, "rgba(46, 239, 16, 0.37)");      // bottom transparent
+  gradientFill.addColorStop(1, "rgba(46, 239, 16, 0.99)");    // top semi-green
 
   return { gradientBorder, gradientFill };
 }
@@ -64,7 +69,7 @@ let stepsChart = new Chart(stepsCtx, {
     labels: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'],
     datasets: [{
       label: 'Steps',
-      data: [100,200,300,400,200,400,1000],
+      data: [100, 200, 300, 400, 200, 400, 1000],
       borderColor: gradientBorder,
       backgroundColor: gradientFill,
       fill: true,
@@ -77,23 +82,37 @@ let stepsChart = new Chart(stepsCtx, {
   options: {
     responsive: true,
     maintainAspectRatio: false,
-    devicePixelRatio: getDevicePixelRatio(), 
-    plugins: { legend: { display: false } },
+    devicePixelRatio: getDevicePixelRatio(),
+    plugins: {
+      legend: { display: false }
+    },
     scales: {
       y: {
         beginAtZero: true,
-        ticks: { maxTicksLimit: 6, font: { size: 12 } },
+        ticks: {
+          maxTicksLimit: 6,
+          font: { family: "Poppins", size: 12 }
+        },
         grid: { color: '#0000001c', borderDash: [15, 10], lineWidth: 1.5 }
       },
       x: {
-        ticks: { font: { size: 12 } },
+        ticks: { font: { family: "Poppins", size: 16 } },
         grid: { display: false }
       }
     }
   }
 });
 
-// ================== Resize Handler ==================
+
+// const items = document.querySelectorAll("#menu li");
+// items.forEach(item => {
+//   item.addEventListener("click", () => {
+//     items.forEach(i => i.classList.remove("active"));
+//     item.classList.add("active");
+//   });
+// });
+
+// // ================== Resize Handler ==================
 window.addEventListener("resize", () => {
  
   const grads = createGradients(stepsCtx);
@@ -153,7 +172,7 @@ function updateStepsChart(period) {
 }
 
 
-const items = document.querySelectorAll("#menu li");
+const items = document.querySelectorAll("#menu li, #end li");
 items.forEach(item => {
   item.addEventListener("click", () => {
     items.forEach(i => i.classList.remove("active"));
