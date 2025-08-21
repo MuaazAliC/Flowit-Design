@@ -35,7 +35,7 @@ new Chart(competitionCtx, {
         }
       },
       x: {
-        ticks: { font: { size: 11 } },
+        ticks: { font: { size: 9 } },
         grid: { display: false }
       }
     }
@@ -141,3 +141,4 @@ const items = document.querySelectorAll("#menu li");
        item.classList.add("active");
      });
    });
+
