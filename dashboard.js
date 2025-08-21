@@ -75,15 +75,17 @@ let stepsChart = new Chart(stepsCtx, {
    
     labels: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'],  
     datasets: [{
-      label: 'Steps',
-    
-      data: [3000, 7500, 12000, 10000, 15000, 8000, 17000],  
-      borderColor: gradientBorder,
-      backgroundColor: gradientFill,
-      fill: true,
-      tension: 0.4,
-      borderWidth: 2,
-    }]
+  label: 'Steps',
+  data: [3000, 7500, 12000, 10000, 15000, 8000, 17000],  
+  borderColor: gradientBorder,
+  backgroundColor: gradientFill,
+  fill: true,
+  tension: 0.4,
+  borderWidth: 2,
+  pointRadius: 0,        
+  pointHoverRadius: 0,
+}]
+
   },
   options: {
     responsive: true,
@@ -103,7 +105,7 @@ let stepsChart = new Chart(stepsCtx, {
 });
 
 
-// 🔥 Update chart based on dropdown selection
+
 function updateStepsChart(period) {
   const selected = document.getElementById("selectedPeriod");
   
