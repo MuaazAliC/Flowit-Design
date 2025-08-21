@@ -398,12 +398,11 @@ canvas {
   }
 
  
-  nav {
+ nav {
     position: relative;
-    width: 97%;
+    width: 95%;
 
   }
-
   
   .list ul,
   .end ul {
@@ -438,3 +437,4 @@ canvas {
     height: auto;
   }
 }
+
